@@ -1,0 +1,33 @@
+# May use extends https://docs.docker.com/compose/extends/
+# However, that complicates Docker compose file.
+
+version: '3.0'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - '8080:8080'
+    depends_on:
+      postgres:
+        condition: 'service_healthy'
+    volumes:
+      - ./gen:/wonyang/gen
+
+  postgres:
+    image: postgres:9.6.22-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=wonyang
+      - POSTGRES_USER=wonyang
+      - POSTGRES_PASSWORD=dnjsfna
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    healthcheck:
+      test: 'pg_isready -h localhost -p 5432 -q -U wonyang'
+      interval: 3s
+      timeout: 1s
+      retries: 10
+    volumes:
+      - './postgresql:/docker-entrypoint-initdb.d/'
