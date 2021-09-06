@@ -5,9 +5,9 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import userRouter from './user';
-import mainRouter from './main';
 import campusRouter from './campus';
 import boardRouter from './main/board';
+import mainRouter from './main/main';
 
 const app = express();
 
