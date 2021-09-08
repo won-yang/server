@@ -37,3 +37,7 @@ export const checkSignedUser = (user: IUser): boolean => {
   }
   return false;
 };
+
+export const updateSignUpData = async (id: number, campus_id: number, nickname: string): Promise<void> => {
+  await db_user.updateSignUpData(id, campus_id, nickname);
+};

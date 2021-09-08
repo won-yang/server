@@ -40,5 +40,14 @@ export const updateLastLogin = async (id: number): Promise<void> => {
   }
 };
 
+export const updateSignUpData = async (id: number, campus_id: number, nickname: string): Promise<void> => {
+  try {
+    await pool.query(
+      `UPDATE USERS SET campus_id = $1, nickname = $2
+      WHERE id = $3`,
+      [campus_id, nickname, id],
+    );
+  } catch (err) {
+    throw new Error(err);
   }
 };
