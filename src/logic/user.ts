@@ -38,6 +38,18 @@ export const checkSignedUser = (user: IUser): boolean => {
   return false;
 };
 
+export const validateNickname = async (nickname: string): Promise<boolean> => {
+  const validateCharacterRegex = /[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-z0-9]/; // 영어 소문자, 한글, 숫자가 아닌 다른 문자가 있는지 확인
+
+  if (nickname.length > 8 || validateCharacterRegex.test(nickname)) {
+    return false;
+  }
+
+  const res = await db_user.checkDuplicateNickname(nickname);
+  console.log('res: ', res);
+  return !res; // 중복된게 없다면 유효한 것
+};
+
 export const updateSignUpData = async (id: number, campus_id: number, nickname: string): Promise<void> => {
   await db_user.updateSignUpData(id, campus_id, nickname);
 };

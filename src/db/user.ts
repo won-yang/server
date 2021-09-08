@@ -51,3 +51,12 @@ export const updateSignUpData = async (id: number, campus_id: number, nickname: 
     throw new Error(err);
   }
 };
+
+export const checkDuplicateNickname = async (nickname: string): Promise<boolean> => {
+  try {
+    const res = await pool.query(`SELECT EXISTS (SELECT 1 FROM USERS WHERE nickname = '${nickname}');`);
+    return res.rows[0]?.exists;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
