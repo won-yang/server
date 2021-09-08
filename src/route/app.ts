@@ -4,6 +4,8 @@ import passport from 'passport';
 import morgan from 'morgan';
 import cors from 'cors';
 
+import CustomError from '../interface/error';
+
 import userRouter from './user';
 import mainRouter from './main';
 import campusRouter from './campus';
@@ -26,7 +28,7 @@ app.get('*', (req: any, res: any) => {
   res.status(404).send('not found');
 });
 
-app.use(function (err, req, res, next) {
+app.use(function (err: CustomError, req, res, next) {
   console.error(err.stack);
   res.status(err.status || 500).send(err?.message || 'server error!');
 });
