@@ -1,5 +1,7 @@
 import express from 'express';
-import * as user_logic from '../../logic/user';
+import * as logic_user from '../../logic/user';
+import check_login from '../../middleware/check_login';
+
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
@@ -7,7 +9,7 @@ router.get('/', async (req, res, next) => {
     const id = req.query.id as string;
     if (!id) throw { msg: 'id가 없습니다.' };
 
-    await user_logic.updateLastLogin(parseInt(id, 10));
+    await logic_user.updateLastLogin(parseInt(id, 10));
 
     res.status(200).json({ asd: '123' });
   } catch (err) {

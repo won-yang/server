@@ -23,12 +23,12 @@ app.use('/api/campus', campusRouter);
 app.use('/api/board', boardRouter);
 
 app.get('*', (req: any, res: any) => {
-  res.status(400).send('not found');
+  res.status(404).send('not found');
 });
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send(err?.msg || 'server error!');
+  res.status(err.status || 500).send(err?.message || 'server error!');
 });
 
 app.listen(8080, () => {

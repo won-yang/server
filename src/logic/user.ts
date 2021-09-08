@@ -1,17 +1,17 @@
-import * as user_db from '../db/user';
+import * as db_user from '../db/user';
 import { IUser } from '../interface/interface';
 
 export const create = async (authId: string): Promise<void> => {
-  await user_db.createUser(authId);
+  await db_user.createUser(authId);
 };
 
 export const get = async (id: number): Promise<IUser> => {
-  const user = await user_db.getUser(id);
+  const user = await db_user.getUser(id);
   return user;
 };
 
 export const getByAuthId = async (authId: string): Promise<IUser> => {
-  const user = await user_db.getUserByAuthId(authId);
+  const user = await db_user.getUserByAuthId(authId);
   return user;
 };
 
@@ -27,9 +27,8 @@ export const getOrCreate = async (authId: string): Promise<IUser> => {
   return user;
 };
 
-export const updateLastLogin = async (id: number): Promise<boolean> => {
-  await user_db.updateLastLogin(id);
-  return true;
+export const updateLastLogin = async (id: number): Promise<void> => {
+  await db_user.updateLastLogin(id);
 };
 
 export const checkSignedUser = (user: IUser): boolean => {
