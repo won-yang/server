@@ -24,9 +24,9 @@ router.get('/validate-nickname', check_login, async (req: any, res, next) => {
 
     if (!nickname) throw new CustomError('닉네임이 없습니다.');
 
-    const isValidate = await logic_user.validateNickname(nickname);
+    const isValid = await logic_user.validateNickname(nickname);
 
-    res.status(200).json({ is_validate: isValidate });
+    res.status(200).json({ is_valid: isValid });
   } catch (err) {
     next(err);
   }
@@ -40,9 +40,9 @@ router.put('/sign-up-data', check_login, async (req: any, res, next) => {
     if (!campus_id) throw new CustomError('캠퍼스 아이디가 없습니다.');
     if (!nickname) throw new CustomError('닉네임이 없습니다.');
 
-    const isValidate = await logic_user.validateNickname(nickname);
+    const isValid = await logic_user.validateNickname(nickname);
 
-    if (!isValidate) throw new CustomError('유효하지 않은 닉네임입니다.');
+    if (!isValid) throw new CustomError('유효하지 않은 닉네임입니다.');
 
     await logic_user.updateSignUpData(id, campus_id, nickname);
 
