@@ -9,3 +9,13 @@ export const getCampusListByName = async (name: string): Promise<ICampus[]> => {
     return err;
   }
 };
+
+export const getCampusNameById = async (campusId: number): Promise<string> => {
+  try {
+    const res = await pool.query(`SELECT name FROM CAMPUS WHERE id = ${campusId}`);
+
+    return res.rows[0]?.name; // only return one
+  } catch (err) {
+    return err;
+  }
+};
