@@ -46,10 +46,9 @@ export const validateNickname = async (nickname: string): Promise<boolean> => {
   }
 
   const res = await db_user.checkDuplicateNickname(nickname);
-  console.log('res: ', res);
   return !res; // 중복된게 없다면 유효한 것
 };
 
-export const updateSignUpData = async (id: number, campus_id: number, nickname: string): Promise<void> => {
-  await db_user.updateSignUpData(id, campus_id, nickname);
+export const updateSignUpData = async (id: number, campusId: number, nickname: string): Promise<void> => {
+  await db_user.updateSignUpData(id, campusId, nickname);
 };
