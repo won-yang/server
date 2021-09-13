@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.use(function (req: any, res, next) {
   try {
-    const token = req.headers.authorization;
+    const token = req.cookies?.token || req.headers?.authorization;
 
     if (!token) throw new CustomError('token does not exist');
 
