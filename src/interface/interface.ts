@@ -29,11 +29,11 @@ export interface IPost {
   electricity: boolean;
   water: boolean;
   gas: boolean;
-  end_at: number;
-  start_at: number;
+  contract_expire_date: string;
+  move_in_date: string;
   address: string;
+  is_address_visible: boolean;
   address_detail: string;
-  address_private: boolean;
   total_floor: number;
   current_floor: number;
   building_type: types.TBUILDING;
@@ -44,6 +44,7 @@ export interface IPost {
   content: string;
   is_private: boolean;
   post_status: types.TPOST_STATUS;
+  option: string[];
 }
 
 export interface IPostBoardForClient {
