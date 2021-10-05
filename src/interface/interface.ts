@@ -46,6 +46,12 @@ export interface IPost {
   post_status: types.TPOST_STATUS;
 }
 
+export interface IImage {
+  id: number;
+  post_id: number;
+  image_url: string;
+}
+
 export interface IPostBoardForClient {
   total_post: number;
   post: IPostBoardList[];
