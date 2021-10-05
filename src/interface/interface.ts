@@ -42,8 +42,8 @@ export interface IPost {
   walking_time: number;
   bus_time: number;
   content: string;
-  is_private: boolean;
   post_status: types.TPOST_STATUS;
+  created_at: string;
   option: string[];
 }
 

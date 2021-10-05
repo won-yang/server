@@ -3,7 +3,7 @@ const router = express.Router();
 import * as logic_post from '../../logic/post';
 
 router.get('/', async (req: any, res: any) => {
-  const { post_id: postId } = req.query;
+  const { id: postId } = req.query;
 
   if (!postId) {
     res.status(400).send('No post id');
