@@ -5,11 +5,15 @@ import CustomError from '../interface/error';
 
 const router = express.Router();
 
-router.get('/upload_url', check_login, async (req: any, res, next) => {
+router.post('/upload_url', check_login, async (req: any, res, next) => {
   try {
     const awsUploadObject = await logic_image.getUploadURL();
+    const resData = {
+      upload_url: awsUploadObject.uploadURL,
+      key: awsUploadObject.key,
+    };
 
-    res.status(200).json(awsUploadObject);
+    res.status(200).json(resData);
   } catch (err) {
     next(err);
   }
@@ -17,12 +21,11 @@ router.get('/upload_url', check_login, async (req: any, res, next) => {
 
 router.post('/', check_login, async (req: any, res, next) => {
   try {
-    const { post_id: postId, img_urls: imgUrls } = req.body;
+    const { img_urls: imgUrls } = req.body;
 
-    if (!postId) throw new CustomError('post id가 없습니다.');
     if (!imgUrls) throw new CustomError('img url이 없습니다.');
 
-    await logic_image.createImage(postId, imgUrls);
+    await logic_image.createImage(imgUrls);
 
     res.status(200).json();
   } catch (err) {

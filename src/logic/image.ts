@@ -29,8 +29,8 @@ export const getUploadURL = async (): Promise<IAwsUploadObject> => {
   };
 };
 
-export const createImage = async (postId: number, imgUrls: string[]): Promise<void> => {
-  return db_image.createImage(postId, imgUrls);
+export const createImage = async (imgUrls: string[]): Promise<void> => {
+  return db_image.createImage(imgUrls);
 };
 
 export const getImages = async (postId: number): Promise<IImage[]> => {
