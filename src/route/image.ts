@@ -25,9 +25,10 @@ router.post('/', check_login, async (req: any, res, next) => {
 
     if (!imgUrls) throw new CustomError('img url이 없습니다.');
 
-    await logic_image.createImage(imgUrls);
+    const data = await logic_image.createImage(imgUrls);
+    const idList = data.map((item) => item.id);
 
-    res.status(200).json();
+    res.status(200).json({ id_list: idList });
   } catch (err) {
     next(err);
   }

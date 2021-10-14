@@ -52,6 +52,10 @@ export interface IImage {
   image_url: string;
 }
 
+export interface IImageId {
+  id: number;
+}
+
 export interface IPostBoardForClient {
   total_post: number;
   post: IPostBoardList[];
