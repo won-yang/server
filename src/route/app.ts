@@ -11,6 +11,7 @@ import campusRouter from './campus';
 import boardRouter from './main/board';
 import mainRouter from './main/main';
 import imageRouter from './image';
+import postRouter from './post/post';
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use('/api/main', mainRouter);
 app.use('/api/campus', campusRouter);
 app.use('/api/board', boardRouter);
 app.use('/api/image', imageRouter);
+app.use('/api/post', postRouter);
 
 app.get('*', (req: any, res: any) => {
   res.status(404).send('not found');
