@@ -1,6 +1,6 @@
 import { IPostBoardList } from '../interface/interface';
 import { TPOST_STATUS } from '../interface/types';
-import * as post_db from '../db/post';
+import * as db_post from '../db/post';
 
 const converStatusName = (type: 'in_progress'): TPOST_STATUS | null => {
   switch (type) {
@@ -20,7 +20,7 @@ export const getPostList = async (
   campusId: number,
 ): Promise<{ total_post: number; post: IPostBoardList[] }> => {
   const convertedType = converStatusName(type);
-  const postList = await post_db.getPost(convertedType, page, campusId);
+  const postList = await db_post.getPostForBoard(convertedType, page, campusId);
 
   const postListForClient: IPostBoardList[] = postList.map((post) => {
     const imageUrl = post.image_url || defaultUrl;

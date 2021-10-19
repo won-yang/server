@@ -1,10 +1,10 @@
 import pool from '.';
-import { IPostBoardList } from '../interface/interface';
+import { IPostBoardList, IPost } from '../interface/interface';
 import { TPOST_STATUS } from '../interface/types';
 
 const PAGE_SIZE = 5;
 
-export const getPost = async (type: TPOST_STATUS | null = null, page: number, campusId: number): Promise<IPostBoardList[]> => {
+export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: number, campusId: number): Promise<IPostBoardList[]> => {
   const offset = PAGE_SIZE * (page - 1) + 1;
 
   try {
