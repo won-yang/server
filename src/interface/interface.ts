@@ -20,7 +20,7 @@ export interface ICampus {
 }
 
 export interface IPost {
-  id: number;
+  campus_id: number;
   title: string;
   contact: string;
   deposit: number;
@@ -44,6 +44,8 @@ export interface IPost {
   content: string;
   is_private: boolean;
   post_status: types.TPOST_STATUS;
+  created_at: string;
+  option: number[];
 }
 
 export interface IPostBoardForClient {

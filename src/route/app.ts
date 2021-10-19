@@ -10,6 +10,8 @@ import userRouter from './user';
 import campusRouter from './campus';
 import boardRouter from './main/board';
 import mainRouter from './main/main';
+import postRouter from './post/post';
+import writeRouter from './post/write';
 
 const app = express();
 
@@ -23,6 +25,8 @@ app.use('/api/user', userRouter);
 app.use('/api/main', mainRouter);
 app.use('/api/campus', campusRouter);
 app.use('/api/board', boardRouter);
+app.use('/api/post', postRouter);
+app.use('/api/write', writeRouter);
 
 app.get('*', (req: any, res: any) => {
   res.status(404).send('not found');
