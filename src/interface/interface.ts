@@ -47,6 +47,16 @@ export interface IPost {
   option: string[];
 }
 
+export interface IImage {
+  id: number;
+  post_id: number;
+  image_url: string;
+}
+
+export interface IImageId {
+  id: number;
+}
+
 export interface IPostBoardForClient {
   total_post: number;
   post: IPostBoardList[];
@@ -78,4 +88,9 @@ export interface IRequest<T> {
   query: any;
   ip: string;
   app: any;
+}
+
+export interface IAwsUploadObject {
+  upload_url: string;
+  key: string;
 }
