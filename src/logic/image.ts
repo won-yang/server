@@ -24,7 +24,7 @@ export const getUploadURL = async (): Promise<IAwsUploadObject> => {
   const uploadURL = await s3.getSignedUrlPromise('putObject', s3Params);
 
   return {
-    uploadURL,
+    upload_url: uploadURL,
     key,
   };
 };

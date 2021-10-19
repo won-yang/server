@@ -9,7 +9,7 @@ router.post('/upload_url', check_login, async (req: any, res, next) => {
   try {
     const awsUploadObject = await logic_image.getUploadURL();
     const resData = {
-      upload_url: awsUploadObject.uploadURL,
+      upload_url: awsUploadObject.upload_url,
       key: awsUploadObject.key,
     };
 
@@ -40,9 +40,9 @@ router.get('/', check_login, async (req: any, res, next) => {
 
     if (!postId) throw new CustomError('post id가 없습니다.');
 
-    const imgUrls = await logic_image.getImages(postId);
+    const imgUrlList = await logic_image.getImages(postId);
 
-    res.status(200).json({ img_urls: imgUrls });
+    res.status(200).json({ img_url_list: imgUrlList });
   } catch (err) {
     next(err);
   }
