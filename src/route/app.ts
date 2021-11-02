@@ -28,6 +28,10 @@ app.use('/api/board', boardRouter);
 app.use('/api/image', imageRouter);
 app.use('/api/post', postRouter);
 
+app.get('/api/hello', (req: any, res: any) => {
+  res.status(200).send('hello world!');
+});
+
 app.get('*', (req: any, res: any) => {
   res.status(404).send('not found');
 });
