@@ -4,8 +4,6 @@ import * as logic_post from '../../logic/post';
 import { IPost } from '../../interface/interface';
 
 router.post('/', async (req: any, res: any) => {
-  console.log(req.body);
-
   const post: IPost = {
     campus_id: req.body.campus_id,
     title: req.body.title,
@@ -36,7 +34,7 @@ router.post('/', async (req: any, res: any) => {
 
   await logic_post.writePost(post);
 
-  res.status(200).json({ message: 'SUCESS' });
+  res.status(200).json({ message: 'SUCCESS' });
 });
 
 export default router;
