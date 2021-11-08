@@ -12,6 +12,7 @@ import boardRouter from './main/board';
 import mainRouter from './main/main';
 import imageRouter from './image';
 import postRouter from './post/post';
+import writeRouter from './post/write';
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/api/campus', campusRouter);
 app.use('/api/board', boardRouter);
 app.use('/api/image', imageRouter);
 app.use('/api/post', postRouter);
+app.use('/api/write', writeRouter);
 
 app.get('/api/hello', (req: any, res: any) => {
   res.status(200).send('hello world!');

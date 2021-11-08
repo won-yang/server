@@ -60,3 +60,47 @@ export const getPostInfo = async (postId: number): Promise<IPost> => {
     return err;
   }
 };
+
+export const writePost = async (post: IPost): Promise<IPost> => {
+  const option = JSON.stringify(post.option);
+
+  try {
+    await pool.query(
+      `INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
+      water, gas, contract_expire_date, move_in_date, address, address_detail,
+      is_address_visible, total_floor, current_floor, building_type, 
+      room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
+      ) VALUES
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25)`,
+      [
+        post.campus_id,
+        post.title,
+        post.contact,
+        post.deposit,
+        post.monthly_rent,
+        post.service_fee,
+        post.electricity,
+        post.water,
+        post.gas,
+        post.contract_expire_date,
+        post.move_in_date,
+        post.address,
+        post.address_detail,
+        post.is_address_visible,
+        post.total_floor,
+        post.current_floor,
+        post.building_type,
+        post.room_type,
+        post.window_side,
+        post.walking_time,
+        post.bus_time,
+        post.content,
+        post.created_at,
+        post.post_status,
+        option,
+      ],
+    );
+  } catch (err) {
+    return err;
+  }
+};

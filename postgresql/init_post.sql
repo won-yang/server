@@ -34,193 +34,193 @@ CREATE TABLE POST
 	walking_time INTEGER,
 	bus_time INTEGER,
 	content VARCHAR(2000),
-	is_private BOOLEAN,
 	created_at TIMESTAMP,
-	post_status STATUS_T
+	post_status STATUS_T, 
+	option VARCHAR(100)
 );
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 1 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 2 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'EXPIRED', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 3 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (2, 'KDB금융대학교 4 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 5 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'EXPIRED', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 6 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'EXPIRED', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (2, 'KDB금융대학교 7 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'EXPIRED', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 8 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 9 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'EXPIRED', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (2, 'KDB금융대학교 10 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 11 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 12 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'EXPIRED', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 13 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'EXPIRED', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (2, 'KDB금융대학교 14 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 15 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (2, 'KDB금융대학교 16 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'EXPIRED', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 17 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 18 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (2, 'KDB금융대학교 19 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 20 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 21 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 22 [계약중] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'IN_PROGRESS');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'IN_PROGRESS', '');
 
 INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity, 
 					water, gas, contract_expire_date, move_in_date, address, address_detail,
 					is_address_visible, total_floor, current_floor, building_type, 
-					room_type, window_side, walking_time, bus_time, content, is_private, created_at, post_status
+					room_type, window_side, walking_time, bus_time, content, created_at, post_status, option
 ) VALUES
 (1, 'ICT폴리텍대학 23 [계약완료] 집 구합니다!!', '010-1234-1234', 200, 30, 2, true, true, true, current_timestamp, current_timestamp, 
-	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', true, current_timestamp, 'EXPIRED');
+	'개포동 연스시 근처', 'ㅇㅇ고시원', true, 4, 3, 'ROW_HOUSE', 'STUDIO', 'SOUTH', 20, 15, '양도합니다', current_timestamp, 'EXPIRED', '');
 
