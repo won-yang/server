@@ -5,12 +5,10 @@ RUN mkdir /wonyang
 COPY yarn.lock /wonyang
 COPY package.json /wonyang
 
-COPY install.sh /wonyang
 COPY .env /wonyang
 
 WORKDIR /wonyang
 
-RUN chmod 755 ./install.sh
-RUN ./install.sh
+RUN yarn install
 
 ENTRYPOINT ["yarn", "start"]
