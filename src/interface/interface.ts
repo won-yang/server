@@ -45,6 +45,7 @@ export interface IPost {
   post_status: types.TPOST_STATUS;
   created_at: string;
   option: number[];
+  images: string[];
 }
 
 export interface IImage {
