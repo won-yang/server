@@ -23,7 +23,7 @@ export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: nu
         WHERE p.post_status = '${type}' AND p.campus_id = ${campusId}
         ORDER BY p.id DESC
         LIMIT ${PAGE_SIZE} OFFSET ${offset}`);
-    return res.rows;
+    return res.rows; // 이미지 여러 개일 경우 잘 동작하는지 확인하기
   } catch (err) {
     return err;
   }
@@ -31,8 +31,8 @@ export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: nu
 
 export const getPostInfo = async (postId: number): Promise<IPost> => {
   try {
-    const post = await pool.query(`
-    SELECT id, title, contact, deposit, monthly_rent, 
+    const resPost = await pool.query(
+      `SELECT id, title, contact, deposit, monthly_rent, 
     service_fee, electricity, water, gas, 
     to_char(contract_expire_date, 'YYYY-MM-DD') as contract_expire_date,
     to_char(move_in_date, 'YYYY-MM-DD') as move_in_date,
@@ -40,9 +40,19 @@ export const getPostInfo = async (postId: number): Promise<IPost> => {
     building_type, room_type, window_side, walking_time, bus_time, content, post_status,
     to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, option 
     FROM post
-    WHERE id = ${postId}`);
+    WHERE id = $1`,
+      [postId],
+    );
 
-    return post.rows[0]; // only return one
+    const resImage = await pool.query(`SELECT image_url FROM image WHERE post_id = $1`, [postId]);
+    const imageList: string[] = resImage.rows.map((e) => e.image_url);
+    const res = {
+      ...resPost.rows[0],
+      images: imageList,
+      option: JSON.parse(resPost.rows[0].option),
+    };
+
+    return res;
   } catch (err) {
     return err;
   }
