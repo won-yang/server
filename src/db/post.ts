@@ -23,7 +23,7 @@ export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: nu
         WHERE p.post_status = '${type}' AND p.campus_id = ${campusId}
         ORDER BY p.id DESC
         LIMIT ${PAGE_SIZE} OFFSET ${offset}`);
-    return res.rows; // 이미지 여러 개일 경우 잘 동작하는지 확인하기
+    return res.rows; //TODO - 이미지 여러 개일 경우 잘 동작하는지 확인하기
   } catch (err) {
     return err;
   }
