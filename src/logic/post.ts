@@ -12,3 +12,11 @@ export const writePost = async (post: IPost): Promise<number> => {
 
   return postId;
 };
+
+export const deletePost = async (postId: number): Promise<boolean> => {
+  const postCount = await db_post.countPostById(postId);
+  if (postCount < 1) return false;
+
+  await db_post.deletePost(postId);
+  return true;
+};
