@@ -7,10 +7,9 @@ const router = express.Router();
 
 router.post('/upload_url', check_login, async (req: any, res, next) => {
   try {
-    const awsUploadObject = await logic_image.getUploadURL();
+    const uploadUrl = await logic_image.getUploadURL();
     const resData = {
-      upload_url: awsUploadObject.upload_url,
-      key: awsUploadObject.key,
+      upload_url: uploadUrl,
     };
 
     res.status(200).json(resData);
