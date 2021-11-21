@@ -7,6 +7,8 @@ export const getPostInfo = async (postId: number): Promise<IPost> => {
   return postInfo;
 };
 
-export const writePost = async (post: IPost) => {
-  await db_post.writePost(post);
+export const writePost = async (post: IPost): Promise<number> => {
+  const postId = await db_post.writePost(post);
+
+  return postId;
 };
