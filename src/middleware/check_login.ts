@@ -11,11 +11,11 @@ router.use(function (req: any, res, next) {
 
     if (!token) throw new CustomError('token does not exist', 403);
 
-    const verifedToken = verifyToken(token);
+    const verifiedToken = verifyToken(token);
 
-    if (!verifedToken || !verifedToken.id) throw new CustomError('invalid token', 403);
+    if (!verifiedToken || !verifiedToken.id) throw new CustomError('invalid token', 403);
 
-    const user = userLogic.get(verifedToken.id);
+    const user = userLogic.get(verifiedToken.id);
 
     if (!user) throw new CustomError('invalid token', 403);
     req.user = user;

@@ -18,16 +18,15 @@ export const getResizedImage = (url: string): null | string => {
   if (!url) return null;
 
   const urlList = url.split('/');
-
   if (urlList.length < 3) return null;
 
-  const imageName = urlList[urlList.length - 1];
   const region = process.env.AWS_REGION;
   const uploadBucket = process.env.UPLOAD_BUCKET;
 
   if (!region) return null;
   if (!uploadBucket) return null;
 
+  const imageName = urlList[urlList.length - 1];
   return `https://${uploadBucket}-resize.s3.${region}.amazonaws.com/resized-${imageName}`;
 };
 
