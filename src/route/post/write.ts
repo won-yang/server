@@ -35,8 +35,6 @@ router.post('/', async (req: any, res: any) => {
     images: req.body.images,
   };
 
-  console.log(createdAt);
-
   const postId = await logic_post.writePost(post);
 
   //TODO - postId를 사용해서 이미지 업로드
