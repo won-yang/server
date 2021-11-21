@@ -96,11 +96,6 @@ export const writePost = async (post: IPost): Promise<number> => {
   }
 };
 
-export const countPostById = async (postId: number): Promise<number> => {
-  const res = await pool.query(`SELECT COUNT(*) FROM POST WHERE id = $1`, [postId]);
-  return res.rows[0]?.count;
-};
-
 export const deletePost = async (postId: number): Promise<boolean> => {
   const res = await pool.query(`DELETE FROM POST WHERE id = $1`, [postId]);
   if (res?.rowCount < 1) return false;
