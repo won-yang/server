@@ -7,7 +7,15 @@ const router = express.Router();
 
 router.use(function (req: any, res, next) {
   try {
-    const token = req.cookies?.token || req.headers?.authorization;
+    const token = req.cookies?.token;
+
+    // TODO: 테스트용으로 추가, dev일때만 가능하도록 해야만
+    if (req.headers?.authorization) {
+      const user = userLogic.get(req.headers?.authorization);
+      req.user = user;
+      next();
+      return;
+    }
 
     if (!token) throw new CustomError('token does not exist', 403);
 
