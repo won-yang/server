@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import dotenv from 'dotenv';
-import * as util from '../../util';
+import * as util from '../../util/utils';
 import * as user_logic from '../../logic/user';
 
 dotenv.config();

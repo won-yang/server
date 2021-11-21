@@ -1,6 +1,6 @@
 import express from 'express';
 import CustomError from '../interface/error';
-import { verifyToken } from '../util';
+import { verifyToken } from '../util/utils';
 import * as userLogic from '../logic/user';
 
 const router = express.Router();
