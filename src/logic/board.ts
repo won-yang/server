@@ -1,7 +1,7 @@
 import { IPostBoardList } from '../interface/interface';
 import { TPOST_STATUS } from '../interface/types';
 import * as db_post from '../db/post';
-import { getResizedImage } from '../util';
+import { getResizedImage } from '../util/utils';
 
 const converStatusName = (type: 'in_progress'): TPOST_STATUS | null => {
   switch (type) {

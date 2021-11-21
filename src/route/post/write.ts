@@ -2,8 +2,10 @@ import express from 'express';
 const router = express.Router();
 import * as logic_post from '../../logic/post';
 import { IPost } from '../../interface/interface';
+import { getCurrentTimeYYMMDDWithTime } from '../../util/utils';
 
 router.post('/', async (req: any, res: any) => {
+  const createdAt = getCurrentTimeYYMMDDWithTime();
   const post: IPost = {
     campus_id: req.body.campus_id,
     title: req.body.title,
@@ -28,15 +30,16 @@ router.post('/', async (req: any, res: any) => {
     bus_time: req.body.bus_time,
     content: req.body.content,
     post_status: req.body.post_status,
-    created_at: req.body.created_at,
+    created_at: createdAt,
     option: req.body.option,
     images: req.body.images,
   };
 
+  console.log(createdAt);
+
   const postId = await logic_post.writePost(post);
 
   //TODO - postId를 사용해서 이미지 업로드
-
   res.status(200).json({ post_id: postId, message: 'SUCCESS' });
 });
 
