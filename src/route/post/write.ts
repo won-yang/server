@@ -30,6 +30,7 @@ router.post('/', async (req: any, res: any) => {
     post_status: req.body.post_status,
     created_at: req.body.created_at,
     option: req.body.option,
+    images: req.body.images,
   };
 
   const postId = await logic_post.writePost(post);

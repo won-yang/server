@@ -38,24 +38,11 @@ export const getPostInfo = async (postId: number): Promise<IPost> => {
     to_char(move_in_date, 'YYYY-MM-DD') as move_in_date,
     address, address_detail, is_address_visible, total_floor, current_floor, 
     building_type, room_type, window_side, walking_time, bus_time, content, post_status,
-    to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at 
+    to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, option 
     FROM post
     WHERE id = ${postId}`);
 
-    const option = await pool.query(`
-    SELECT name
-    FROM option as o JOIN postoption as po ON o.id = po.option_id 
-    WHERE po.post_id = ${postId}`);
-
-    const optionList = option.rows.map((obj) => {
-      return obj.name;
-    });
-    const res: IPost = {
-      ...post.rows[0],
-      option: optionList,
-    };
-
-    return res; // only return one
+    return post.rows[0]; // only return one
   } catch (err) {
     return err;
   }
