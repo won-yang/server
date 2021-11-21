@@ -24,7 +24,7 @@ export const getPostList = async (
   const postList = await db_post.getPostForBoard(convertedType, page, campusId);
 
   const postListForClient: IPostBoardList[] = postList.map((post) => {
-    const imageUrl = getResizedImage(post.image_url) || defaultUrl;
+    const imageUrl = getResizedImage(post.image_url) ?? defaultUrl;
 
     return {
       id: post.id,

@@ -1,15 +1,15 @@
 import { JwtPayload, sign, SignOptions, verify } from 'jsonwebtoken';
 import { IJwtData } from '../interface/interface';
 
-const createToken = (data: IJwtData) => {
+const createToken = (data: IJwtData): string => {
   return sign(data, process.env.JWT_SECRET, { expiresIn: '1h' } as SignOptions);
 };
 
-const verifyToken = (token: string) => {
+const verifyToken = (token: string): JwtPayload => {
   return verify(token, process.env.JWT_SECRET) as JwtPayload;
 };
 
-const getResizedImage = (url: string) => {
+const getResizedImage = (url: string): null | string => {
   if (!url) return null;
 
   const urlList = url.split('/');
