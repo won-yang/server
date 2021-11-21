@@ -1,5 +1,5 @@
 import * as db_image from './../db/image';
-import { IAwsUploadObject, IImage, IImageId } from './../interface/interface';
+import { IImage, IImageId } from './../interface/interface';
 import AWS from 'aws-sdk';
 
 AWS.config.update({
@@ -10,7 +10,7 @@ AWS.config.update({
 const s3 = new AWS.S3();
 const URL_EXPIRATION_SECONDS = 300;
 
-export const getUploadURL = async (): Promise<IAwsUploadObject> => {
+export const getUploadURL = async (): Promise<string> => {
   const ramdomId = Math.random() * 10000000;
   const key = `${ramdomId}.png`;
 
@@ -23,10 +23,7 @@ export const getUploadURL = async (): Promise<IAwsUploadObject> => {
 
   const uploadURL = await s3.getSignedUrlPromise('putObject', s3Params);
 
-  return {
-    upload_url: uploadURL,
-    key,
-  };
+  return uploadURL;
 };
 
 export const createImage = async (imgUrls: string[]): Promise<IImageId[]> => {
