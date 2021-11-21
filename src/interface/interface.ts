@@ -90,8 +90,3 @@ export interface IRequest<T> {
   ip: string;
   app: any;
 }
-
-export interface IAwsUploadObject {
-  upload_url: string;
-  key: string;
-}
