@@ -1,4 +1,5 @@
 import { JwtPayload, sign, SignOptions, verify } from 'jsonwebtoken';
+import CustomError from '../interface/error';
 import { IJwtData } from '../interface/interface';
 
 const createToken = (data: IJwtData): string => {
@@ -6,7 +7,11 @@ const createToken = (data: IJwtData): string => {
 };
 
 const verifyToken = (token: string): JwtPayload => {
-  return verify(token, process.env.JWT_SECRET) as JwtPayload;
+  try {
+    return verify(token, process.env.JWT_SECRET) as JwtPayload;
+  } catch (err) {
+    throw new CustomError('invalid token', 403);
+  }
 };
 
 const getResizedImage = (url: string): null | string => {
