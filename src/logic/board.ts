@@ -1,6 +1,7 @@
 import { IPostBoardList } from '../interface/interface';
 import { TPOST_STATUS } from '../interface/types';
 import * as db_post from '../db/post';
+import { getResizedImage } from '../util';
 
 const converStatusName = (type: 'in_progress'): TPOST_STATUS | null => {
   switch (type) {
@@ -23,7 +24,7 @@ export const getPostList = async (
   const postList = await db_post.getPostForBoard(convertedType, page, campusId);
 
   const postListForClient: IPostBoardList[] = postList.map((post) => {
-    const imageUrl = post.image_url || defaultUrl;
+    const imageUrl = getResizedImage(post.image_url) ?? defaultUrl;
 
     return {
       id: post.id,
