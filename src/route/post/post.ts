@@ -15,4 +15,21 @@ router.get('/', async (req: any, res: any) => {
   res.status(200).json({ post_info: postInfo });
 });
 
+router.delete('/:id', async (req: any, res: any) => {
+  const { id: postId } = req.params;
+
+  if (!postId) {
+    res.status(400).send('No post id');
+    return;
+  }
+
+  const isSuccess = await logic_post.deletePost(postId);
+
+  if (!isSuccess) {
+    res.status(204).send('post does not exist');
+  }
+
+  res.status(200).send();
+});
+
 export default router;

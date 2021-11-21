@@ -12,3 +12,9 @@ export const writePost = async (post: IPost): Promise<number> => {
 
   return postId;
 };
+
+export const deletePost = async (postId: number): Promise<boolean> => {
+  const res = await db_post.deletePost(postId);
+
+  return res;
+};
