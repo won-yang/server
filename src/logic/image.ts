@@ -1,5 +1,3 @@
-import * as db_image from './../db/image';
-import { IImage, IImageId } from './../interface/interface';
 import AWS from 'aws-sdk';
 
 AWS.config.update({
