@@ -35,10 +35,10 @@ router.post('/', async (req: any, res: any) => {
     images: req.body.images,
   };
 
-  const postId = await logic_post.writePost(post);
+  await logic_post.writePost(post);
 
   //TODO - postId를 사용해서 이미지 업로드
-  res.status(200).json({ post_id: postId, message: 'SUCCESS' });
+  res.status(200).json({ message: 'SUCCESS' });
 });
 
 export default router;

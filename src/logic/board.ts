@@ -12,9 +12,6 @@ const convertStatusName = (type: 'in_progress'): TPOST_STATUS | null => {
   }
 };
 
-const defaultUrl =
-  'https://cityhiker.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A9%E1%84%83%E1%85%A2%E1%84%89%E1%85%A1%E1%86%AB_%E1%84%80%E1%85%A7%E1%84%8B%E1%85%AE%E1%86%AF_1.jpg';
-
 export const getPostList = async (
   type: 'in_progress' | null,
   page: number,
@@ -24,8 +21,7 @@ export const getPostList = async (
   const postList = await db_post.getPostForBoard(convertedType, page, campusId);
 
   const postListForClient: IPostBoardList[] = postList.map((post) => {
-    const imageUrl: string = post.image_url ?? defaultUrl;
-    const resizedImageUrl = getResizedImage(imageUrl);
+    const resizedImageUrl = getResizedImage(post.image_url );
 
     return {
       id: post.id,
