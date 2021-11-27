@@ -17,15 +17,15 @@ router.use(function (req: any, res, next) {
       return;
     }
 
-    if (!token) throw new CustomError('token does not exist', 403);
+    if (!token) throw new CustomError('token does not exist', 401);
 
     const verifiedToken = verifyToken(token);
 
-    if (!verifiedToken || !verifiedToken.id) throw new CustomError('invalid token', 403);
+    if (!verifiedToken || !verifiedToken.id) throw new CustomError('invalid token', 401);
 
     const user = userLogic.get(verifiedToken.id);
 
-    if (!user) throw new CustomError('invalid token', 403);
+    if (!user) throw new CustomError('invalid token', 401);
     req.user = user;
     next();
   } catch (err) {

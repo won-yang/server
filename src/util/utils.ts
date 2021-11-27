@@ -10,7 +10,7 @@ export const verifyToken = (token: string): JwtPayload => {
   try {
     return verify(token, process.env.JWT_SECRET) as JwtPayload;
   } catch (err) {
-    throw new CustomError('invalid token', 403);
+    throw new CustomError('invalid token', 401);
   }
 };
 
