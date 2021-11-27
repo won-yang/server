@@ -25,11 +25,3 @@ export const getUploadURL = async (): Promise<string> => {
 
   return uploadURL;
 };
-
-export const createImage = async (imgUrls: string[]): Promise<IImageId[]> => {
-  return db_image.createImage(imgUrls);
-};
-
-export const getImages = async (postId: number): Promise<IImage[]> => {
-  return db_image.getImagesByPostId(postId);
-};
