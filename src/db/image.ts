@@ -1,9 +1,9 @@
 import pool from '.';
 import { IImage, IImageId } from '../interface/interface';
 
-export const createImage = async (imgUrls: string[]): Promise<IImageId[]> => {
-  const insertQuery = `INSERT INTO image (image_url) VALUES`;
-  const values = imgUrls.map((imgUrl) => `('${imgUrl}')`);
+export const createImage = async (imgUrls: string[], postId: number): Promise<IImageId[]> => {
+  const insertQuery = `INSERT INTO image (post_id, image_url) VALUES`;
+  const values = imgUrls.map((imgUrl) => `(${postId}, '${imgUrl}')`);
   const valueQuery = `${values.join(',')}`;
   const optionQuery = 'RETURNING id;';
   const res = await pool.query(insertQuery + valueQuery + optionQuery);
