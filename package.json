@@ -4,8 +4,9 @@
   "description": "backend",
   "main": ".eslintrc.js",
   "scripts": {
-    "start": "nodemon ./gen/route/app.js",
-    "dev": "tsc -w & nodemon ./gen/route/app.js"
+    "start": "tsc & nodemon ./gen/route/app.js",
+    "dev": "tsc -w & nodemon ./gen/route/app.js",
+    "lint": "eslint src/**/**.ts --fix"
   },
   "repository": {
     "type": "git",
@@ -44,8 +45,8 @@
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.3.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "2.5.0",
     "typescript": "^4.3.4"
   }
 }
