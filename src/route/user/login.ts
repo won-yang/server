@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import dotenv from 'dotenv';
-import { Strategy as KakaoStrategy } from 'passport-kakao';
+import { Strategy as KakaoStrategy, StrategyOption } from 'passport-kakao';
 import * as util from '../../util/utils';
 import * as user_logic from '../../logic/user';
 
@@ -37,7 +37,7 @@ passport.use(
     {
       clientID: KAKAO_CLIENT_ID,
       callbackURL: KAKAO_CALLBACK_URL, // 위에서 설정한 Redirect URI
-    },
+    } as StrategyOption,
     async (accessToken: any, refreshToken: any, profile: any, done: any) => {
       try {
         const user = await user_logic.getOrCreate(profile.id);
