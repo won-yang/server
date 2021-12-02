@@ -43,9 +43,23 @@ export interface IPost {
   bus_time: number;
   content: string;
   post_status: types.TPOST_STATUS;
-  created_at: string;
+  created_at?: string;
   option: number[];
   images: string[];
+}
+
+export interface IUpdatePost extends Omit<IPost, 'campus_id'> {
+  id: number;
+}
+
+export interface IImage {
+  id: number;
+  post_id: number;
+  image_url: string;
+}
+
+export interface IImageId {
+  id: number;
 }
 
 export interface IPostBoardForClient {
