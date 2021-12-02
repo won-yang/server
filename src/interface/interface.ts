@@ -48,7 +48,7 @@ export interface IPost {
   images: string[];
 }
 
-export interface IUpdatePost extends IPost {
+export interface IUpdatePost extends Omit<IPost, 'campus_id'> {
   id: number;
 }
 

@@ -46,7 +46,6 @@ router.put('/:id', async (req: any, res: any) => {
   const id = req.params.id as number;
   const post: IUpdatePost = {
     id,
-    campus_id: req.body.campus_id,
     title: req.body.title,
     contact: req.body.contact,
     deposit: req.body.deposit,
