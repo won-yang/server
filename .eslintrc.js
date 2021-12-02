@@ -24,6 +24,7 @@ module.exports = {
   extends: ['eslint:recommended', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:prettier/recommended', 'prettier'],
   plugins: ['@typescript-eslint', 'import', 'prettier'],
   rules: {
+    'prettier/prettier': 'error',
     '@typescript-eslint/await-thenable': 'off',
     '@typescript-eslint/indent': 'off',
     '@typescript-eslint/naming-convention': 'off',
