@@ -1,3 +1,4 @@
+import { IUpdatePost } from './../interface/interface';
 import * as db_post from '../db/post';
 import { IPost } from '../interface/interface';
 
@@ -11,6 +12,10 @@ export const writePost = async (post: IPost): Promise<number> => {
   const postId = await db_post.writePost(post);
 
   return postId;
+};
+
+export const updatePost = async (post: IUpdatePost): Promise<void> => {
+  await db_post.updatePost(post);
 };
 
 export const deletePost = async (postId: number): Promise<boolean> => {

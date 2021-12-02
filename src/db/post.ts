@@ -1,5 +1,5 @@
+import { IUpdatePost, IPostBoardList, IPost } from './../interface/interface';
 import pool from '.';
-import { IPostBoardList, IPost } from '../interface/interface';
 import { TPOST_STATUS } from '../interface/types';
 
 const PAGE_SIZE = 5;
@@ -104,6 +104,65 @@ export const writePost = async (post: IPost): Promise<number> => {
     console.log(err);
     return err;
   }
+};
+
+export const updatePost = async (post: IUpdatePost): Promise<void> => {
+  const option = JSON.stringify(post.option);
+  await pool.query(
+    `UPDATE POST SET
+      title = $1,
+      contact = $2,
+      deposit = $3,
+      monthly_rent = $4,
+      service_fee = $5,
+      electricity = $6,
+      water = $7,
+      gas = $8,
+      contract_expire_date = $9,
+      move_in_date = $10,
+      address = $11,
+      address_detail = $12,
+      is_address_visible = $13,
+      total_floor = $14,
+      current_floor = $15,
+      building_type = $16,
+      room_type = $17,
+      window_side = $18,
+      walking_time = $19,
+      bus_time = $20,
+      content = $21,
+      post_status = $22,
+      option = $23
+    WHERE
+      id = $24
+    `,
+    [
+      post.title,
+      post.contact,
+      post.deposit,
+      post.monthly_rent,
+      post.service_fee,
+      post.electricity,
+      post.water,
+      post.gas,
+      post.contract_expire_date,
+      post.move_in_date,
+      post.address,
+      post.address_detail,
+      post.is_address_visible,
+      post.total_floor,
+      post.current_floor,
+      post.building_type,
+      post.room_type,
+      post.window_side,
+      post.walking_time,
+      post.bus_time,
+      post.content,
+      post.post_status,
+      option,
+      post.id,
+    ],
+  );
 };
 
 export const deletePost = async (postId: number): Promise<boolean> => {
