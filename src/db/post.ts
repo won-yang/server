@@ -3,8 +3,7 @@ import pool from '.';
 import { TPOST_STATUS } from '../interface/types';
 
 const PAGE_SIZE = 5;
-const DEFAULT_IMAGE_URL =
-  'https://wonyang-image.s3.ap-northeast-2.amazonaws.com/thumbnail.png'
+const DEFAULT_IMAGE_URL = 'https://wonyang-image.s3.ap-northeast-2.amazonaws.com/thumbnail.png';
 
 export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: number, campusId: number): Promise<IPostBoardList[]> => {
   const offset = PAGE_SIZE * (page - 1) + 1;
@@ -31,7 +30,7 @@ export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: nu
         ...row,
         image_url: resPost.rows?.images ? JSON.parse(resPost.rows?.images[0]) : DEFAULT_IMAGE_URL,
       };
-    })
+    });
 
     return res; //TODO - 이미지 여러 개일 경우 잘 동작하는지 확인하기
   } catch (err) {
@@ -104,7 +103,7 @@ export const writePost = async (post: IPost): Promise<void> => {
         post.created_at,
         post.post_status,
         option,
-        images
+        images,
       ],
     );
   } catch (err) {
