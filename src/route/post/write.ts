@@ -38,7 +38,6 @@ router.post('/', async (req: any, res: any) => {
 
   await logic_post.writePost(post);
 
-  //TODO - postId를 사용해서 이미지 업로드
   res.status(200).json({ message: 'SUCCESS' });
 });
 
