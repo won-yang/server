@@ -114,6 +114,8 @@ export const writePost = async (post: IPost): Promise<void> => {
 
 export const updatePost = async (post: IUpdatePost): Promise<void> => {
   const option = JSON.stringify(post.option);
+  const images = JSON.stringify(post.images);
+  
   await pool.query(
     `UPDATE POST SET
       title = $1,
@@ -138,9 +140,10 @@ export const updatePost = async (post: IUpdatePost): Promise<void> => {
       bus_time = $20,
       content = $21,
       post_status = $22,
-      option = $23
+      option = $23,
+      images = $24
     WHERE
-      id = $24
+      id = $25
     `,
     [
       post.title,
@@ -166,6 +169,7 @@ export const updatePost = async (post: IUpdatePost): Promise<void> => {
       post.content,
       post.post_status,
       option,
+      images,
       post.id,
     ],
   );
