@@ -77,7 +77,7 @@ export const writePost = async (post: IPost): Promise<void> => {
       is_address_visible, total_floor, current_floor, building_type,
       room_type, window_side, walking_time, bus_time, content, created_at, post_status, option, images
       ) VALUES
-      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25)`,
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26)`,
       [
         post.campus_id,
         post.title,
