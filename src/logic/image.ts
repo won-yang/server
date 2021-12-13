@@ -1,5 +1,3 @@
-import * as db_image from './../db/image';
-import { IImage, IImageId } from './../interface/interface';
 import AWS from 'aws-sdk';
 
 AWS.config.update({
@@ -24,12 +22,4 @@ export const getUploadURL = async (): Promise<string> => {
   const uploadURL = await s3.getSignedUrlPromise('putObject', s3Params);
 
   return uploadURL;
-};
-
-export const createImage = async (imgUrls: string[]): Promise<IImageId[]> => {
-  return db_image.createImage(imgUrls);
-};
-
-export const getImages = async (postId: number): Promise<IImage[]> => {
-  return db_image.getImagesByPostId(postId);
 };

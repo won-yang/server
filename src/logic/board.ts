@@ -12,9 +12,6 @@ const convertStatusName = (type: 'in_progress'): TPOST_STATUS | null => {
   }
 };
 
-const defaultUrl =
-  'https://wonyang-image.s3.ap-northeast-2.amazonaws.com/thumbnail.png';
-
 export const getPostList = async (
   type: 'in_progress' | null,
   page: number,
@@ -24,8 +21,7 @@ export const getPostList = async (
   const postList = await db_post.getPostForBoard(convertedType, page, campusId);
 
   const postListForClient: IPostBoardList[] = postList.map((post) => {
-    const imageUrl: string = post.image_url ?? defaultUrl;
-    const resizedImageUrl = getResizedImage(imageUrl);
+    const resizedImageUrl = getResizedImage(post.image_url );
 
     return {
       id: post.id,
