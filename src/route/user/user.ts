@@ -5,14 +5,12 @@ import check_login from '../../middleware/check_login';
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', check_login, async (req: any, res, next) => {
   try {
-    const id = req.query.id as string;
-    if (!id) throw new CustomError('id가 없습니다.');
+    const id = req.user.id;
+    const campusId = req.user.campus_id;
 
-    await logic_user.updateLastLogin(parseInt(id, 10));
-
-    res.status(200).json({ asd: '123' });
+    res.status(200).json({ user_id: id, campus_id: campusId });
   } catch (err) {
     next(err);
   }
