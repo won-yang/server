@@ -8,10 +8,10 @@ export interface IJwtData {
 
 export interface IUser {
   id: number;
-  authId: string;
+  auth_id: string;
   nickname: string;
-  campusId: number;
-  lastLogin: number;
+  campus_id: number;
+  last_login: number;
 }
 
 export interface ICampus {
