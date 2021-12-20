@@ -32,7 +32,7 @@ export const updateLastLogin = async (id: number): Promise<void> => {
 };
 
 export const checkSignedUser = (user: IUser): boolean => {
-  if (user.campusId) {
+  if (user.campus_id) {
     return true;
   }
   return false;
