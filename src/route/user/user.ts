@@ -1,6 +1,7 @@
 import CustomError from './../../interface/error';
 import express from 'express';
 import * as logic_user from '../../logic/user';
+import * as logic_campus from '../../logic/campus';
 import check_login from '../../middleware/check_login';
 
 const router = express.Router();
@@ -10,8 +11,9 @@ router.get('/', check_login, async (req: any, res, next) => {
     const id = req.user.id;
     const campusId = req.user.campus_id;
     const nickname = req.user.nickname;
+    const campusName = await logic_campus.getCampusName(campusId);
 
-    res.status(200).json({ user_id: id, campus_id: campusId, nickname: nickname });
+    res.status(200).json({ user_id: id, campus_id: campusId, nickname, campus_name: campusName });
   } catch (err) {
     next(err);
   }
