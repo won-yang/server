@@ -18,7 +18,7 @@ export const getPostList = async (
   campusId: number,
 ): Promise<{ total_post: number; post: IPostBoardList[] }> => {
   const convertedType = convertStatusName(type);
-  const postList = await db_post.getPostForBoard(convertedType, page, campusId);
+  const { total_post: totalPost, post: postList } = await db_post.getPostForBoard(convertedType, page, campusId);
 
   const postListForClient: IPostBoardList[] = postList.map((post) => {
     const resizedImageUrl = getResizedImage(post.image_url);
@@ -36,7 +36,7 @@ export const getPostList = async (
   });
 
   return {
-    total_post: postList.length,
+    total_post: totalPost,
     post: postListForClient,
   };
 };
