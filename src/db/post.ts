@@ -2,13 +2,19 @@ import { IUpdatePost, IPostBoardList, IPost } from './../interface/interface';
 import pool from '.';
 import { TPOST_STATUS } from '../interface/types';
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 10;
 const DEFAULT_IMAGE_URL = 'https://wonyang-image.s3.ap-northeast-2.amazonaws.com/thumbnail.png';
 
-export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: number, campusId: number): Promise<IPostBoardList[]> => {
+export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: number, campusId: number): Promise<{ total_post: number; post: IPostBoardList[] }> => {
   const offset = PAGE_SIZE * (page - 1) + 1;
 
   try {
+    const resTotalPostNum = await pool.query(
+      `SELECT COUNT(*)
+      FROM post
+      WHERE campus_id = ${campusId}`,
+    );
+
     const resPost =
       type === null
         ? await pool.query(
@@ -25,14 +31,14 @@ export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: nu
         ORDER BY id DESC
         LIMIT ${PAGE_SIZE} OFFSET ${offset}`);
 
-    const res = resPost.rows.map((row) => {
+    const posts = resPost.rows.map((row) => {
       return {
         ...row,
         image_url: resPost.rows?.images ? JSON.parse(resPost.rows?.images[0]) : DEFAULT_IMAGE_URL,
       };
     });
 
-    return res; //TODO - 이미지 여러 개일 경우 잘 동작하는지 확인하기
+    return { total_post: Number(resTotalPostNum?.rows[0].count ?? 0), post: posts };
   } catch (err) {
     return err;
   }
