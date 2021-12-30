@@ -1,3 +1,7 @@
+# 필요한 것들
+- Node.js (v16 이상 권장)
+- typescript
+- docker
 # 로컬 서버 실행 방법
 
 1. `yarn install`을 이용하여 패키지 설치
