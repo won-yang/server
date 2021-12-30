@@ -1,9 +1,10 @@
-import { IUpdatePost } from './../../interface/interface';
 import express from 'express';
-const router = express.Router();
+import { IUpdatePost } from './../../interface/interface';
 import * as logic_post from '../../logic/post';
 import { IPost } from '../../interface/interface';
 import { getCurrentTimeYYMMDDWithTime } from '../../util/utils';
+
+const router = express.Router();
 
 router.post('/', async (req: any, res: any, next) => {
   try {
@@ -38,7 +39,6 @@ router.post('/', async (req: any, res: any, next) => {
     };
 
     await logic_post.writePost(post);
-
 
     res.status(200).json({ message: 'SUCCESS' });
   } catch (err) {

@@ -1,16 +1,16 @@
 import express from 'express';
-import { nextTick } from 'process';
-const router = express.Router();
+import CustomError from '../../interface/error';
 import * as board_logic from '../../logic/board';
+
+const router = express.Router();
 
 router.get('/', async (req: any, res: any, next) => {
   try {
     let { type, page, campus_id } = req.query;
 
-    if (!page || !campus_id) {
-      res.status(400).send('');
-      return;
-    }
+    if (!page) throw new CustomError('해당 page가 없습니다.');
+
+    if (!campus_id) throw new CustomError('캠퍼스 id가 없습니다.');
 
     if (type === undefined) type = null;
 
