@@ -3,8 +3,38 @@ import { IUpdatePost } from './../../interface/interface';
 import * as logic_post from '../../logic/post';
 import { IPost } from '../../interface/interface';
 import { getCurrentTimeYYMMDDWithTime } from '../../util/utils';
+import CustomError from '../../interface/error';
 
 const router = express.Router();
+
+const validatePostArgument = (post: IPost) => {
+  if (!post.campus_id) throw new CustomError('campus_id가 존재하지 않습니다.', 204);
+  if (!post.title) throw new CustomError('title 존재하지 않습니다.', 204);
+  if (!post.contact) throw new CustomError('contact가 존재하지 않습니다.', 204);
+  if (!post.deposit) throw new CustomError('deposit가 존재하지 않습니다.', 204);
+  if (!post.monthly_rent) throw new CustomError('monthly_rent가 존재하지 않습니다.', 204);
+  if (!post.service_fee) throw new CustomError('service_fee가 존재하지 않습니다.', 204);
+  if (!post.electricity) throw new CustomError('electricity가 존재하지 않습니다.', 204);
+  if (!post.water) throw new CustomError('water가 존재하지 않습니다.', 204);
+  if (!post.gas) throw new CustomError('gas가 존재하지 않습니다.', 204);
+  if (!post.contract_expire_date) throw new CustomError('contract_expire_date가 존재하지 않습니다.', 204);
+  if (!post.move_in_date) throw new CustomError('move_in_date가 존재하지 않습니다.', 204);
+  if (!post.address) throw new CustomError('address가 존재하지 않습니다.', 204);
+  if (!post.is_address_visible) throw new CustomError('is_address_visible가 존재하지 않습니다.', 204);
+  if (!post.address_detail) throw new CustomError('address_detail가 존재하지 않습니다.', 204);
+  if (!post.total_floor) throw new CustomError('total_floor가 존재하지 않습니다.', 204);
+  if (!post.current_floor) throw new CustomError('current_floor가 존재하지 않습니다.', 204);
+  if (!post.building_type) throw new CustomError('building_type가 존재하지 않습니다.', 204);
+  if (!post.room_type) throw new CustomError('room_type가 존재하지 않습니다.', 204);
+  if (!post.window_side) throw new CustomError('window_side가 존재하지 않습니다.', 204);
+  if (!post.walking_time) throw new CustomError('walking_time가 존재하지 않습니다.', 204);
+  if (!post.bus_time) throw new CustomError('bus_time가 존재하지 않습니다.', 204);
+  if (!post.content) throw new CustomError('content가 존재하지 않습니다.', 204);
+  if (!post.post_status) throw new CustomError('post_status가 존재하지 않습니다.', 204);
+  if (!post.created_at) throw new CustomError('created_at가 존재하지 않습니다.', 204);
+  if (!post.option) throw new CustomError('option가 존재하지 않습니다.', 204);
+  if (!post.images) throw new CustomError('images가 존재하지 않습니다.', 204);
+}
 
 router.post('/', async (req: any, res: any, next) => {
   try {
@@ -38,6 +68,7 @@ router.post('/', async (req: any, res: any, next) => {
       images: req.body.images,
     };
 
+    validatePostArgument(post);
     await logic_post.writePost(post);
 
     res.status(200).json({ message: 'SUCCESS' });
@@ -45,6 +76,35 @@ router.post('/', async (req: any, res: any, next) => {
     next(err);
   }
 });
+
+const validateUpdatePostArgument = (post: IUpdatePost) => {
+  if (!post.id) throw new CustomError('id가 존재하지 않습니다.', 204);
+  if (!post.title) throw new CustomError('title 존재하지 않습니다.', 204);
+  if (!post.contact) throw new CustomError('contact가 존재하지 않습니다.', 204);
+  if (!post.deposit) throw new CustomError('deposit가 존재하지 않습니다.', 204);
+  if (!post.monthly_rent) throw new CustomError('monthly_rent가 존재하지 않습니다.', 204);
+  if (!post.service_fee) throw new CustomError('service_fee가 존재하지 않습니다.', 204);
+  if (!post.electricity) throw new CustomError('electricity가 존재하지 않습니다.', 204);
+  if (!post.water) throw new CustomError('water가 존재하지 않습니다.', 204);
+  if (!post.gas) throw new CustomError('gas가 존재하지 않습니다.', 204);
+  if (!post.contract_expire_date) throw new CustomError('contract_expire_date가 존재하지 않습니다.', 204);
+  if (!post.move_in_date) throw new CustomError('move_in_date가 존재하지 않습니다.', 204);
+  if (!post.address) throw new CustomError('address가 존재하지 않습니다.', 204);
+  if (!post.is_address_visible) throw new CustomError('is_address_visible가 존재하지 않습니다.', 204);
+  if (!post.address_detail) throw new CustomError('address_detail가 존재하지 않습니다.', 204);
+  if (!post.total_floor) throw new CustomError('total_floor가 존재하지 않습니다.', 204);
+  if (!post.current_floor) throw new CustomError('current_floor가 존재하지 않습니다.', 204);
+  if (!post.building_type) throw new CustomError('building_type가 존재하지 않습니다.', 204);
+  if (!post.room_type) throw new CustomError('room_type가 존재하지 않습니다.', 204);
+  if (!post.window_side) throw new CustomError('window_side가 존재하지 않습니다.', 204);
+  if (!post.walking_time) throw new CustomError('walking_time가 존재하지 않습니다.', 204);
+  if (!post.bus_time) throw new CustomError('bus_time가 존재하지 않습니다.', 204);
+  if (!post.content) throw new CustomError('content가 존재하지 않습니다.', 204);
+  if (!post.post_status) throw new CustomError('post_status가 존재하지 않습니다.', 204);
+  if (!post.created_at) throw new CustomError('created_at가 존재하지 않습니다.', 204);
+  if (!post.option) throw new CustomError('option가 존재하지 않습니다.', 204);
+  if (!post.images) throw new CustomError('images가 존재하지 않습니다.', 204);
+}
 
 router.put('/:id', async (req: any, res: any, next) => {
   try {
@@ -76,6 +136,8 @@ router.put('/:id', async (req: any, res: any, next) => {
       option: req.body.option,
       images: req.body.images,
     };
+
+    validateUpdatePostArgument(post);
     await logic_post.updatePost(post);
 
     res.status(200).json({ message: 'SUCCESS' });
