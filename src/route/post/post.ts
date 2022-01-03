@@ -1,15 +1,14 @@
 import express from 'express';
-const router = express.Router();
+import CustomError from '../../interface/error';
 import * as logic_post from '../../logic/post';
+
+const router = express.Router();
 
 router.get('/', async (req: any, res: any, next) => {
   try {
     const { id: postId } = req.query;
 
-    if (!postId) {
-      res.status(400).send('No post id');
-      return;
-    }
+    if (!postId) throw new CustomError('post id가 없습니다.');
 
     const postInfo = await logic_post.getPostInfo(postId);
 
@@ -23,16 +22,11 @@ router.delete('/:id', async (req: any, res: any, next) => {
   try {
     const { id: postId } = req.params;
 
-    if (!postId) {
-      res.status(400).send('No post id');
-      return;
-    }
+    if (!postId) throw new CustomError('post id가 없습니다.');
 
     const isSuccess = await logic_post.deletePost(postId);
 
-    if (!isSuccess) {
-      res.status(204).send('post does not exist');
-    }
+    if (!isSuccess) throw new CustomError('post가 존재하지 않습니다.');
 
     res.status(200).send();
   } catch (err) {

@@ -1,4 +1,5 @@
 import express from 'express';
+import CustomError from '../interface/error';
 import * as campus_logic from '../logic/campus';
 const router = express.Router();
 
@@ -7,8 +8,7 @@ router.get('/', async (req: any, res, next) => {
     const { name } = req.query;
 
     if (!name) {
-      res.status(400).send('');
-      return;
+      throw new CustomError('name이 존재하지 않습니다.');
     }
 
     const campusList = await campus_logic.getCampusList(name);
