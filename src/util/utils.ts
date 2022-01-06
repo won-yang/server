@@ -49,3 +49,9 @@ export const getCurrentTimeYYMMDDWithTime = (): string => {
 
   return `${`${year}-${month >= 10 ? month : `0${month}`}-${date >= 10 ? date : `0${date}`}` + ' '}${datetext}`;
 };
+
+export const isNullORUndefined = (object: any): boolean => {
+  if (object === null || object === undefined)
+    return true;
+  return false;
+}
