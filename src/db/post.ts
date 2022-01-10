@@ -1,6 +1,7 @@
 import { IUpdatePost, IPostBoardList, IPost } from './../interface/interface';
 import pool from '.';
 import { TPOST_STATUS } from '../interface/types';
+import { isNullORUndefined } from '../util/utils'
 
 const PAGE_SIZE = 10;
 const DEFAULT_IMAGE_URL = 'https://wonyang-image.s3.ap-northeast-2.amazonaws.com/thumbnail.png';
@@ -120,7 +121,7 @@ export const writePost = async (post: IPost): Promise<void> => {
 
 export const updatePost = async (post: IUpdatePost): Promise<void> => {
   const option = JSON.stringify(post.option);
-  const images = JSON.stringify(post.images);
+  const images = isNullORUndefined(post.images) ? JSON.stringify(post.images) : '[]';
 
   await pool.query(
     `UPDATE POST SET
