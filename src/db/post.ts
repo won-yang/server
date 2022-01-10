@@ -74,7 +74,7 @@ export const getPostInfo = async (postId: number): Promise<IPost> => {
 
 export const writePost = async (post: IPost): Promise<void> => {
   const option = JSON.stringify(post.option);
-  const images = JSON.stringify(post.images);
+  const images = isNullORUndefined(post.images) ? JSON.stringify(post.images) : '[]';
 
   try {
     await pool.query(
