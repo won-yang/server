@@ -1,12 +1,16 @@
 import { IUpdatePost, IPostBoardList, IPost } from './../interface/interface';
 import pool from '.';
 import { TPOST_STATUS } from '../interface/types';
-import { isNullORUndefined } from '../util/utils'
+import { isNullOrUndefined } from '../util/utils';
 
 const PAGE_SIZE = 10;
 const DEFAULT_IMAGE_URL = 'https://wonyang-image.s3.ap-northeast-2.amazonaws.com/thumbnail.png';
 
-export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: number, campusId: number): Promise<{ total_post: number; post: IPostBoardList[] }> => {
+export const getPostForBoard = async (
+  type: TPOST_STATUS | null = null,
+  page: number,
+  campusId: number,
+): Promise<{ total_post: number; post: IPostBoardList[] }> => {
   const offset = PAGE_SIZE * (page - 1) + 1;
 
   try {
@@ -74,7 +78,7 @@ export const getPostInfo = async (postId: number): Promise<IPost> => {
 
 export const writePost = async (post: IPost): Promise<void> => {
   const option = JSON.stringify(post.option);
-  const images = isNullORUndefined(post.images) ? JSON.stringify(post.images) : '[]';
+  const images = isNullOrUndefined(post.images) ? JSON.stringify(post.images) : '[]';
 
   try {
     await pool.query(
@@ -121,7 +125,7 @@ export const writePost = async (post: IPost): Promise<void> => {
 
 export const updatePost = async (post: IUpdatePost): Promise<void> => {
   const option = JSON.stringify(post.option);
-  const images = isNullORUndefined(post.images) ? JSON.stringify(post.images) : '[]';
+  const images = isNullOrUndefined(post.images) ? JSON.stringify(post.images) : '[]';
 
   await pool.query(
     `UPDATE POST SET
