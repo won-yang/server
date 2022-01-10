@@ -11,7 +11,7 @@ export const getPostForBoard = async (
   page: number,
   campusId: number,
 ): Promise<{ total_post: number; post: IPostBoardList[] }> => {
-  const offset = PAGE_SIZE * (page - 1) + 1;
+  const offset = PAGE_SIZE * (page - 1);
 
   try {
     const resTotalPostNum = await pool.query(
