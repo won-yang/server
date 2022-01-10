@@ -78,7 +78,8 @@ export const getPostInfo = async (postId: number): Promise<IPost> => {
 
 export const writePost = async (post: IPost): Promise<void> => {
   const option = JSON.stringify(post.option);
-  const images = isNullOrUndefined(post.images) ? JSON.stringify(post.images) : '[]';
+  const images = isNullOrUndefined(post.images) ? '[]' : JSON.stringify(post.images);
+  const postStatus = isNullOrUndefined(post.post_status) ? 'IN_PROGRESS' : post.post_status;
 
   try {
     await pool.query(
@@ -112,7 +113,7 @@ export const writePost = async (post: IPost): Promise<void> => {
         post.bus_time,
         post.content,
         post.created_at,
-        post.post_status,
+        postStatus,
         option,
         images,
       ],

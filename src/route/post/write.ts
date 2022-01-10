@@ -31,7 +31,6 @@ const validatePostArgument = (post: IPost) => {
   if (isNullOrUndefined(post.walking_time)) throw new CustomError('walking_time가 존재하지 않습니다.');
   if (isNullOrUndefined(post.bus_time)) throw new CustomError('bus_time가 존재하지 않습니다.');
   if (isNullOrUndefined(post.content)) throw new CustomError('content가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.post_status)) throw new CustomError('post_status가 존재하지 않습니다.');
   if (isNullOrUndefined(post.created_at)) throw new CustomError('created_at가 존재하지 않습니다.');
   if (isNullOrUndefined(post.option)) throw new CustomError('option가 존재하지 않습니다.');
 };
