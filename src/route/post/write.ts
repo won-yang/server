@@ -33,7 +33,6 @@ const validatePostArgument = (post: IPost) => {
   if (!post.post_status) throw new CustomError('post_status가 존재하지 않습니다.');
   if (!post.created_at) throw new CustomError('created_at가 존재하지 않습니다.');
   if (!post.option) throw new CustomError('option가 존재하지 않습니다.');
-  if (!post.images) throw new CustomError('images가 존재하지 않습니다.');
 };
 
 router.post('/', async (req: any, res: any, next) => {
@@ -103,7 +102,6 @@ const validateUpdatePostArgument = (post: IUpdatePost) => {
   if (!post.post_status) throw new CustomError('post_status가 존재하지 않습니다.');
   if (!post.created_at) throw new CustomError('created_at가 존재하지 않습니다.');
   if (!post.option) throw new CustomError('option가 존재하지 않습니다.');
-  if (!post.images) throw new CustomError('images가 존재하지 않습니다.');
 };
 
 router.put('/:id', async (req: any, res: any, next) => {
