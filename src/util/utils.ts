@@ -51,7 +51,8 @@ export const getCurrentTimeYYMMDDWithTime = (): string => {
 };
 
 export const isNullORUndefined = (object: any): boolean => {
-  if (object === null || object === undefined)
+  if (object === null || object === undefined) {
     return true;
+  }
   return false;
-}
+};

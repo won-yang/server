@@ -1,12 +1,16 @@
 import { IUpdatePost, IPostBoardList, IPost } from './../interface/interface';
 import pool from '.';
 import { TPOST_STATUS } from '../interface/types';
-import { isNullORUndefined } from '../util/utils'
+import { isNullORUndefined } from '../util/utils';
 
 const PAGE_SIZE = 10;
 const DEFAULT_IMAGE_URL = 'https://wonyang-image.s3.ap-northeast-2.amazonaws.com/thumbnail.png';
 
-export const getPostForBoard = async (type: TPOST_STATUS | null = null, page: number, campusId: number): Promise<{ total_post: number; post: IPostBoardList[] }> => {
+export const getPostForBoard = async (
+  type: TPOST_STATUS | null = null,
+  page: number,
+  campusId: number,
+): Promise<{ total_post: number; post: IPostBoardList[] }> => {
   const offset = PAGE_SIZE * (page - 1) + 1;
 
   try {

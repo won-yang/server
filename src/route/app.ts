@@ -40,7 +40,7 @@ app.get('*', (req: any, res: any) => {
 
 app.use(function (err: CustomError, req, res, next) {
   console.error(err.stack);
-  res.status(err.status || 500).send(err?.message || 'server error!');
+  res.status(err.status || 500).send({ message: err?.message ?? 'server error!' });
 });
 
 app.listen(8080, () => {
