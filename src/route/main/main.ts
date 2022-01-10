@@ -1,7 +1,7 @@
 import express from 'express';
 import CustomError from '../../interface/error';
 import * as logic_campus from '../../logic/campus';
-import { isNullORUndefined } from '../../util/utils';
+import { isNullOrUndefined } from '../../util/utils';
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ router.get('/', async (req: any, res: any, next) => {
   try {
     const { campus_id } = req.query;
 
-    if (isNullORUndefined(campus_id)) throw new CustomError('캠퍼스 id가 없습니다.');
+    if (isNullOrUndefined(campus_id)) throw new CustomError('캠퍼스 id가 없습니다.');
 
     const campusName = await logic_campus.getCampusName(campus_id);
 

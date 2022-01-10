@@ -3,7 +3,7 @@ import express from 'express';
 import * as logic_user from '../../logic/user';
 import * as logic_campus from '../../logic/campus';
 import check_login from '../../middleware/check_login';
-import { isNullORUndefined } from '../../util/utils';
+import { isNullOrUndefined } from '../../util/utils';
 
 
 const router = express.Router();
@@ -25,7 +25,7 @@ router.get('/validate-nickname', check_login, async (req: any, res, next) => {
   try {
     const nickname = req.query.nickname as string;
 
-    if (isNullORUndefined(nickname)) throw new CustomError('닉네임이 없습니다.');
+    if (isNullOrUndefined(nickname)) throw new CustomError('닉네임이 없습니다.');
 
     const isValid = await logic_user.validateNickname(nickname);
 
@@ -40,12 +40,12 @@ router.put('/sign-up-data', check_login, async (req: any, res, next) => {
     const id = req.user.id;
     const { campus_id: campusId, nickname } = req.body;
 
-    if (isNullORUndefined(campusId)) throw new CustomError('캠퍼스 아이디가 없습니다.');
-    if (isNullORUndefined(nickname)) throw new CustomError('닉네임이 없습니다.');
+    if (isNullOrUndefined(campusId)) throw new CustomError('캠퍼스 아이디가 없습니다.');
+    if (isNullOrUndefined(nickname)) throw new CustomError('닉네임이 없습니다.');
 
     const isValid = await logic_user.validateNickname(nickname);
 
-    if (isNullORUndefined(isValid)) throw new CustomError('유효하지 않은 닉네임입니다.');
+    if (isNullOrUndefined(isValid)) throw new CustomError('유효하지 않은 닉네임입니다.');
 
     await logic_user.updateSignUpData(id, campusId, nickname);
 
