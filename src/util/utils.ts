@@ -56,3 +56,10 @@ export const isNullOrUndefined = (object: any): boolean => {
   }
   return false;
 };
+
+export const isEmpty = (object: any): boolean => {
+  if (object === null || object === undefined || object.length == 0) {
+    return true;
+  }
+  return false;
+};
