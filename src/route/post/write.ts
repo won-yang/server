@@ -2,19 +2,20 @@ import express from 'express';
 import { IUpdatePost } from './../../interface/interface';
 import * as logic_post from '../../logic/post';
 import { IPost } from '../../interface/interface';
-import { getCurrentTimeYYMMDDWithTime } from '../../util/utils';
+import { getCurrentTimeYYMMDDWithTime, isNullOrUndefined, isEmpty } from '../../util/utils';
 import CustomError from '../../interface/error';
-import { isNullOrUndefined, isEmpty } from '../../util/utils';
 
 const router = express.Router();
 
 const validatePostArgument = (post: IPost) => {
-  if (isNullOrUndefined(post.campus_id)) throw new CustomError('campus_id가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.campus_id) || !Number.isInteger(post.campus_id)) throw new CustomError('campus_id가 존재하지 않습니다.');
   if (isNullOrUndefined(post.title)) throw new CustomError('title 존재하지 않습니다.');
   if (isEmpty(post.contact)) throw new CustomError('contact가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.deposit)) throw new CustomError('deposit가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.monthly_rent)) throw new CustomError('monthly_rent가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.service_fee)) throw new CustomError('service_fee가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.deposit) || !Number.isInteger(post.deposit)) throw new CustomError('deposit가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.monthly_rent) || !Number.isInteger(post.monthly_rent)) {
+    throw new CustomError('monthly_rent가 존재하지 않습니다.');
+  }
+  if (isNullOrUndefined(post.service_fee) || !Number.isInteger(post.service_fee)) throw new CustomError('service_fee가 존재하지 않습니다.');
   if (isNullOrUndefined(post.electricity)) throw new CustomError('electricity가 존재하지 않습니다.');
   if (isNullOrUndefined(post.water)) throw new CustomError('water가 존재하지 않습니다.');
   if (isNullOrUndefined(post.gas)) throw new CustomError('gas가 존재하지 않습니다.');
@@ -23,13 +24,17 @@ const validatePostArgument = (post: IPost) => {
   if (isEmpty(post.address)) throw new CustomError('address가 존재하지 않습니다.');
   if (isNullOrUndefined(post.is_address_visible)) throw new CustomError('is_address_visible가 존재하지 않습니다.');
   if (isEmpty(post.address_detail)) throw new CustomError('address_detail가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.total_floor)) throw new CustomError('total_floor가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.current_floor)) throw new CustomError('current_floor가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.total_floor) || !Number.isInteger(post.total_floor)) throw new CustomError('total_floor가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.current_floor) || !Number.isInteger(post.current_floor)) {
+    throw new CustomError('current_floor가 존재하지 않습니다.');
+  }
   if (isNullOrUndefined(post.building_type)) throw new CustomError('building_type가 존재하지 않습니다.');
   if (isNullOrUndefined(post.room_type)) throw new CustomError('room_type가 존재하지 않습니다.');
   if (isNullOrUndefined(post.window_side)) throw new CustomError('window_side가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.walking_time)) throw new CustomError('walking_time가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.bus_time)) throw new CustomError('bus_time가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.walking_time) || !Number.isInteger(post.walking_time)) {
+    throw new CustomError('walking_time가 존재하지 않습니다.');
+  }
+  if (isNullOrUndefined(post.bus_time) || !Number.isInteger(post.bus_time)) throw new CustomError('bus_time가 존재하지 않습니다.');
   if (isEmpty(post.content)) throw new CustomError('content가 존재하지 않습니다.');
   if (isNullOrUndefined(post.created_at)) throw new CustomError('created_at가 존재하지 않습니다.');
   if (isNullOrUndefined(post.option)) throw new CustomError('option가 존재하지 않습니다.');
@@ -77,12 +82,14 @@ router.post('/', async (req: any, res: any, next) => {
 });
 
 const validateUpdatePostArgument = (post: IUpdatePost) => {
-  if (isNullOrUndefined(post.id)) throw new CustomError('id가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.id) || !Number.isInteger(post.id)) throw new CustomError('id가 존재하지 않습니다.');
   if (isNullOrUndefined(post.title)) throw new CustomError('title 존재하지 않습니다.');
   if (isNullOrUndefined(post.contact)) throw new CustomError('contact가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.deposit)) throw new CustomError('deposit가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.monthly_rent)) throw new CustomError('monthly_rent가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.service_fee)) throw new CustomError('service_fee가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.deposit) || !Number.isInteger(post.deposit)) throw new CustomError('deposit가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.monthly_rent) || !Number.isInteger(post.monthly_rent)) {
+    throw new CustomError('monthly_rent가 존재하지 않습니다.');
+  }
+  if (isNullOrUndefined(post.service_fee) || !Number.isInteger(post.service_fee)) throw new CustomError('service_fee가 존재하지 않습니다.');
   if (isNullOrUndefined(post.electricity)) throw new CustomError('electricity가 존재하지 않습니다.');
   if (isNullOrUndefined(post.water)) throw new CustomError('water가 존재하지 않습니다.');
   if (isNullOrUndefined(post.gas)) throw new CustomError('gas가 존재하지 않습니다.');
@@ -91,13 +98,17 @@ const validateUpdatePostArgument = (post: IUpdatePost) => {
   if (isNullOrUndefined(post.address)) throw new CustomError('address가 존재하지 않습니다.');
   if (isNullOrUndefined(post.is_address_visible)) throw new CustomError('is_address_visible가 존재하지 않습니다.');
   if (isNullOrUndefined(post.address_detail)) throw new CustomError('address_detail가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.total_floor)) throw new CustomError('total_floor가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.current_floor)) throw new CustomError('current_floor가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.total_floor) || !Number.isInteger(post.total_floor)) throw new CustomError('total_floor가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.current_floor) || !Number.isInteger(post.current_floor)) {
+    throw new CustomError('current_floor가 존재하지 않습니다.');
+  }
   if (isNullOrUndefined(post.building_type)) throw new CustomError('building_type가 존재하지 않습니다.');
   if (isNullOrUndefined(post.room_type)) throw new CustomError('room_type가 존재하지 않습니다.');
   if (isNullOrUndefined(post.window_side)) throw new CustomError('window_side가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.walking_time)) throw new CustomError('walking_time가 존재하지 않습니다.');
-  if (isNullOrUndefined(post.bus_time)) throw new CustomError('bus_time가 존재하지 않습니다.');
+  if (isNullOrUndefined(post.walking_time) || !Number.isInteger(post.walking_time)) {
+    throw new CustomError('walking_time가 존재하지 않습니다.');
+  }
+  if (isNullOrUndefined(post.bus_time) || !Number.isInteger(post.bus_time)) throw new CustomError('bus_time가 존재하지 않습니다.');
   if (isNullOrUndefined(post.content)) throw new CustomError('content가 존재하지 않습니다.');
   if (isNullOrUndefined(post.post_status)) throw new CustomError('post_status가 존재하지 않습니다.');
   if (isNullOrUndefined(post.created_at)) throw new CustomError('created_at가 존재하지 않습니다.');
