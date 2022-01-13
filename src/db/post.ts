@@ -13,46 +13,41 @@ export const getPostForBoard = async (
 ): Promise<{ total_post: number; post: IPostBoardList[] }> => {
   const offset = PAGE_SIZE * (page - 1);
 
-  try {
-    const resTotalPostNum = await pool.query(
-      `SELECT COUNT(*)
+  const resTotalPostNum = await pool.query(
+    `SELECT COUNT(*)
       FROM post
       WHERE campus_id = ${campusId}`,
-    );
+  );
 
-    const resPost =
-      type === null
-        ? await pool.query(
-            `SELECT id, title, deposit, monthly_rent, address, post_status, to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, images
+  const resPost =
+    type === null
+      ? await pool.query(
+          `SELECT id, title, deposit, monthly_rent, address, post_status, to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, images
           FROM post
           WHERE campus_id = ${campusId}
           ORDER BY id DESC
           LIMIT ${PAGE_SIZE} OFFSET ${offset}`,
-          )
-        : await pool.query(`
+        )
+      : await pool.query(`
         SELECT id, title, deposit, monthly_rent, address, post_status, to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, images
         FROM post
         WHERE post_status = '${type}' AND campus_id = ${campusId}
         ORDER BY id DESC
         LIMIT ${PAGE_SIZE} OFFSET ${offset}`);
 
-    const posts = resPost.rows.map((row) => {
-      return {
-        ...row,
-        image_url: resPost.rows?.images ? JSON.parse(resPost.rows?.images[0]) : DEFAULT_IMAGE_URL,
-      };
-    });
+  const posts = resPost.rows.map((row) => {
+    return {
+      ...row,
+      image_url: resPost.rows?.images ? JSON.parse(resPost.rows?.images[0]) : DEFAULT_IMAGE_URL,
+    };
+  });
 
-    return { total_post: Number(resTotalPostNum?.rows[0].count ?? 0), post: posts };
-  } catch (err) {
-    return err;
-  }
+  return { total_post: Number(resTotalPostNum?.rows[0].count ?? 0), post: posts };
 };
 
 export const getPostInfo = async (postId: number): Promise<IPost> => {
-  try {
-    const resPost = await pool.query(
-      `SELECT id, title, contact, deposit, monthly_rent,
+  const resPost = await pool.query(
+    `SELECT id, title, contact, deposit, monthly_rent,
     service_fee, electricity, water, gas,
     to_char(contract_expire_date, 'YYYY-MM-DD') as contract_expire_date,
     to_char(move_in_date, 'YYYY-MM-DD') as move_in_date,
@@ -61,19 +56,16 @@ export const getPostInfo = async (postId: number): Promise<IPost> => {
     to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') as created_at, option, images
     FROM post
     WHERE id = $1`,
-      [postId],
-    );
+    [postId],
+  );
 
-    const res = {
-      ...resPost.rows[0],
-      images: JSON.parse(resPost.rows[0].images),
-      option: JSON.parse(resPost.rows[0].option),
-    };
+  const res = {
+    ...resPost.rows[0],
+    images: JSON.parse(resPost.rows[0].images),
+    option: JSON.parse(resPost.rows[0].option),
+  };
 
-    return res;
-  } catch (err) {
-    return err;
-  }
+  return res;
 };
 
 export const writePost = async (post: IPost): Promise<void> => {
@@ -81,47 +73,42 @@ export const writePost = async (post: IPost): Promise<void> => {
   const images = isNullOrUndefined(post.images) ? '[]' : JSON.stringify(post.images);
   const postStatus = isNullOrUndefined(post.post_status) ? 'IN_PROGRESS' : post.post_status;
 
-  try {
-    await pool.query(
-      `INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity,
+  await pool.query(
+    `INSERT INTO POST (campus_id, title, contact, deposit, monthly_rent, service_fee, electricity,
       water, gas, contract_expire_date, move_in_date, address, address_detail,
       is_address_visible, total_floor, current_floor, building_type,
       room_type, window_side, walking_time, bus_time, content, created_at, post_status, option, images
       ) VALUES
       ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26)`,
-      [
-        post.campus_id,
-        post.title,
-        post.contact,
-        post.deposit,
-        post.monthly_rent,
-        post.service_fee,
-        post.electricity,
-        post.water,
-        post.gas,
-        post.contract_expire_date,
-        post.move_in_date,
-        post.address,
-        post.address_detail,
-        post.is_address_visible,
-        post.total_floor,
-        post.current_floor,
-        post.building_type,
-        post.room_type,
-        post.window_side,
-        post.walking_time,
-        post.bus_time,
-        post.content,
-        post.created_at,
-        postStatus,
-        option,
-        images,
-      ],
-    );
-  } catch (err) {
-    console.log(err);
-    //return err;
-  }
+    [
+      post.campus_id,
+      post.title,
+      post.contact,
+      post.deposit,
+      post.monthly_rent,
+      post.service_fee,
+      post.electricity,
+      post.water,
+      post.gas,
+      post.contract_expire_date,
+      post.move_in_date,
+      post.address,
+      post.address_detail,
+      post.is_address_visible,
+      post.total_floor,
+      post.current_floor,
+      post.building_type,
+      post.room_type,
+      post.window_side,
+      post.walking_time,
+      post.bus_time,
+      post.content,
+      post.created_at,
+      postStatus,
+      option,
+      images,
+    ],
+  );
 };
 
 export const updatePost = async (post: IUpdatePost): Promise<void> => {
