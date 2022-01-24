@@ -10,21 +10,14 @@ dotenv.config();
 const router = express.Router();
 const KAKAO_CLIENT_ID = process.env.KAKAO_CLIENT_ID;
 const KAKAO_CALLBACK_URL = process.env.KAKAO_CALLBACK_URL;
-const cookieMaxAge: number = 1000 * 60 * 60;
 
 const successLogin = async (req, res, next) => {
-  const tokenData = {
-    id: req.user.id,
-    data: 'hihihi',
-  };
-
   try {
-    const token = util.createToken(tokenData);
+    const token = util.createJwt(req.user.id);
     const isSigned = user_logic.checkSignedUser(req.user);
-
     await user_logic.updateLastLogin(req.user.id);
 
-    res.cookie('token', token, { maxAge: cookieMaxAge, httpOnly: true });
+    res.cookie('token', token, util.getCookieOption());
     res.status(200).json({ is_signed: isSigned, campus_id: req.user.campus_id });
   } catch (err) {
     next(err);
