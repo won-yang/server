@@ -1,9 +1,16 @@
-import { JwtPayload, sign, SignOptions, verify } from 'jsonwebtoken';
+import { JwtPayload, sign, SignOptions, verify, decode } from 'jsonwebtoken';
 import CustomError from '../interface/error';
 import { IJwtData } from '../interface/interface';
 
-export const createToken = (data: IJwtData): string => {
-  return sign(data, process.env.JWT_SECRET, { expiresIn: '1h' } as SignOptions);
+export const COOKIE_EXPIRES_TIME = 1000 * 60 * 60;
+export const TOKEN_EXPIRES_TIME = 60 * 60;
+
+export const createJwt = (userId: number): string => {
+  const tokenData = {
+    id: userId,
+  } as IJwtData;
+
+  return sign(tokenData, process.env.JWT_SECRET, { expiresIn: TOKEN_EXPIRES_TIME } as SignOptions);
 };
 
 export const verifyToken = (token: string): JwtPayload => {
@@ -12,6 +19,25 @@ export const verifyToken = (token: string): JwtPayload => {
   } catch (err) {
     throw new CustomError('invalid token', 401);
   }
+};
+
+export const checkTokenAlmostExpired = (token: string) => {
+  try {
+    const { exp } = decode(token) as JwtPayload;
+    const expireTime = new Date(exp * 1000);
+    const refreshTime = (TOKEN_EXPIRES_TIME * 1000) / 2;
+
+    if (expireTime.getTime() - Date.now() < refreshTime) {
+      return true;
+    }
+    return false;
+  } catch (err) {
+    throw new CustomError('invalid token', 401);
+  }
+};
+
+export const getCookieOption = () => {
+  return { maxAge: COOKIE_EXPIRES_TIME, httpOnly: true };
 };
 
 export const getResizedImage = (url: string): null | string => {

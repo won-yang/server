@@ -5,7 +5,6 @@ import * as logic_campus from '../../logic/campus';
 import check_login from '../../middleware/check_login';
 import { isNullOrUndefined } from '../../util/utils';
 
-
 const router = express.Router();
 
 router.get('/', check_login, async (req: any, res, next) => {

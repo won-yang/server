@@ -3,7 +3,6 @@ import * as types from './types';
 
 export interface IJwtData {
   id: number;
-  data: string;
 }
 
 export interface IUser {
